@@ -2,6 +2,7 @@ from typing import List
 
 import pandas as pd
 import pytest
+import os
 from pandas._testing import assert_frame_equal
 
 from utils.cleaning import lower_case_and_strip_spaces, combine_genres_list, find_duplicates_and_combine
@@ -67,7 +68,7 @@ def test_combine_genres_list(genre_string_list, combined):
 
 
 def test_find_duplicates_and_combine():
-    initial_df: pd.DataFrame = pd.read_csv('fixtures/duplicated_movie_fixture.csv')
+    initial_df: pd.DataFrame = pd.read_csv(f"{os.path.dirname(os.path.abspath(__file__))}/fixtures/duplicated_movie_fixture.csv")
     list_of_dup_titles: List = ['Aladdin (1992)', 'Forrest Gump (1994)']
     actual_movies_dataframe: pd.DataFrame = find_duplicates_and_combine(initial_df, list_of_dup_titles)
     assert_frame_equal(_expected_movies_dataframe().reset_index(drop=True),
