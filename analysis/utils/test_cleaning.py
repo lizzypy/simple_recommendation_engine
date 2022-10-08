@@ -5,7 +5,7 @@ import pytest
 import os
 from pandas._testing import assert_frame_equal
 
-from utils.cleaning import lower_case_and_strip_spaces, combine_genres_list, find_duplicates_and_combine
+from analysis.utils.cleaning import lower_case_and_strip_spaces, combine_genres_list, find_duplicates_and_combine
 
 
 def test_lower_case_and_strip_scenario_1():
