@@ -3,11 +3,11 @@ from typing import List, Set
 import pandas as pd
 
 
-def lower_case_and_strip_spaces(input: str):
+def lower_case_and_strip_spaces(input: str) -> str:
     return input.lower().strip()
 
 
-def combine_genres_list(genres_strings: List[str]):
+def combine_genres_list(genres_strings: List[str]) -> str:
     all_genres: List = []
 
     for genre_string in genres_strings:

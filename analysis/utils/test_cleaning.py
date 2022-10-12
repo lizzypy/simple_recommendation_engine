@@ -7,6 +7,8 @@ from pandas._testing import assert_frame_equal
 
 from analysis.utils.cleaning import lower_case_and_strip_spaces, combine_genres_list, find_duplicates_and_combine
 
+BASE_PATH = os.path.dirname(os.path.abspath(__file__))
+DUPLICATE_MOVIE_FIXTURE_PATH = f"{BASE_PATH}/fixtures/duplicated_movie_fixture.csv"
 
 def test_lower_case_and_strip_scenario_1():
     initial: str = "Crime|drama|HORROR"
@@ -68,13 +70,14 @@ def test_combine_genres_list(genre_string_list, combined):
 
 
 def test_find_duplicates_and_combine():
-    initial_df: pd.DataFrame = pd.read_csv(f"{os.path.dirname(os.path.abspath(__file__))}/fixtures/duplicated_movie_fixture.csv")
+    initial_df: pd.DataFrame = pd.read_csv(DUPLICATE_MOVIE_FIXTURE_PATH)
     list_of_dup_titles: List = ['Aladdin (1992)', 'Forrest Gump (1994)']
     actual_movies_dataframe: pd.DataFrame = find_duplicates_and_combine(initial_df, list_of_dup_titles)
     assert_frame_equal(_expected_movies_dataframe().reset_index(drop=True),
                        actual_movies_dataframe.reset_index(drop=True))
 
 
+# TODO put this in a fixture as well
 def _expected_movies_dataframe():
     data = [[588, "Aladdin (1992)", "adventure|animation|children|comedy|musical|fantasy"],
             [114240, "Aladdin (1992)", "adventure|animation|children|comedy|musical|fantasy"],
