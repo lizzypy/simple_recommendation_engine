@@ -7,21 +7,19 @@ def lower_case_and_strip_spaces(input: str) -> str:
     return input.lower().strip()
 
 
-def combine_genres_list(genres_strings: List[str]) -> str:
-    all_genres: List = []
-
-    for genre_string in genres_strings:
-        genres: List = genre_string.split('|')
-        for genre in genres:
+def combine_genres_list(input: List[str]) -> str:
+    all_genres: List[str] = []
+    for genre_str in input:
+        genre_list: List = genre_str.split('|')
+        for genre in genre_list:
             if genre not in all_genres:
                 all_genres.append(genre)
-
     return '|'.join(all_genres)
 
 
-def find_duplicates_and_combine(all_data: pd.DataFrame, list_of_duplicate_titles: List[str]):
-    for title in list_of_duplicate_titles:
-        rows_with_genres_to_combine = all_data.loc[all_data['title'] == title]
+def find_duplicates_and_combine(initial_df: pd.DataFrame, duplicate_titles: List[str]) -> pd.DataFrame:
+    for title in duplicate_titles:
+        rows_with_genres_to_combine = initial_df.loc[initial_df['title'] == title]
         all_genres: List = []
         for idx, row in rows_with_genres_to_combine.iterrows():
             genres: str = row['genres']
@@ -31,5 +29,5 @@ def find_duplicates_and_combine(all_data: pd.DataFrame, list_of_duplicate_titles
 
         for idx, row in rows_with_genres_to_combine.iterrows():
             rows_with_genres_to_combine.at[idx, 'genres'] = all_genres_for_title
-        all_data.loc[rows_with_genres_to_combine.index, :] = rows_with_genres_to_combine[:]
-    return all_data
+        initial_df.loc[rows_with_genres_to_combine.index, :] = rows_with_genres_to_combine[:]
+    return initial_df

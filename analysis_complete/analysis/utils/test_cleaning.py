@@ -3,26 +3,26 @@ from typing import List
 import pandas as pd
 import pytest
 import os
-from pandas._testing import assert_frame_equal
 
 from analysis.utils.cleaning import lower_case_and_strip_spaces, combine_genres_list, find_duplicates_and_combine
+from analysis.utils.fixtures.movies import expected_movies_dataframe
+from pandas._testing import assert_frame_equal
+
 
 BASE_PATH = os.path.dirname(os.path.abspath(__file__))
 DUPLICATE_MOVIE_FIXTURE_PATH = f"{BASE_PATH}/fixtures/duplicated_movie_fixture.csv"
 
 @pytest.mark.parametrize(
-    "initial, expected",
+    "input, expected",
     [
-        ("Crime|drama|HORROR", "crime|drama|horror"),
-        (" CRIME|DRAMA|HORROR ", "crime|drama|horror"),
-        (" CRIME ", "crime"),
+        (" comedy|FANTASY|Action ", "comedy|fantasy|action"),
+        (" FANTASY ", "fantasy"),
         (" comedy ", "comedy"),
     ],
 )
-def test_lower_case_and_strip_spaces(initial, expected):
-    actual = lower_case_and_strip_spaces(initial)
+def test_lower_case_and_strip_spaces(input, expected):
+    actual: str = lower_case_and_strip_spaces(input)
     assert actual == expected
-
 
 @pytest.mark.parametrize(
     "genre_string_list, combined",
@@ -34,25 +34,14 @@ def test_lower_case_and_strip_spaces(initial, expected):
     ],
 )
 def test_combine_genres_list(genre_string_list, combined):
-    actual = combine_genres_list(genre_string_list)
+    actual: str = combine_genres_list(genre_string_list)
     assert actual == combined
 
 
-def test_find_duplicates_and_combine():
+def test_find_duplicates_and_combine(expected_movies_dataframe):
     initial_df: pd.DataFrame = pd.read_csv(DUPLICATE_MOVIE_FIXTURE_PATH)
     list_of_dup_titles: List = ['Aladdin (1992)', 'Forrest Gump (1994)']
-    actual_movies_dataframe: pd.DataFrame = find_duplicates_and_combine(initial_df, list_of_dup_titles)
-    assert_frame_equal(_expected_movies_dataframe().reset_index(drop=True),
-                       actual_movies_dataframe.reset_index(drop=True))
-
-
-# TODO put this in a fixture as well
-def _expected_movies_dataframe():
-    data = [[588, "Aladdin (1992)", "adventure|animation|children|comedy|musical|fantasy"],
-            [114240, "Aladdin (1992)", "adventure|animation|children|comedy|musical|fantasy"],
-            [356, "Forrest Gump (1994)", "comedy|drama|romance|war|action"],
-            [1236, "Forrest Gump (1994)", "comedy|drama|romance|war|action"],
-            [1, "Toy Story (1995)", "adventure|animation|children|comedy|fantasy"]]
-    return pd.DataFrame(data, columns=['movieId', 'title', 'genres'])
+    actual_df: pd.DataFrame = find_duplicates_and_combine(initial_df, list_of_dup_titles)
+    assert_frame_equal(actual_df, expected_movies_dataframe)
 
 
