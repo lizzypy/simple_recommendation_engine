@@ -20,4 +20,17 @@ movies_fixture_path: str = f"{os.path.dirname(os.path.abspath(__file__))}/fixtur
     ],
 )
 def test_get_recommendations(movie_title, expected_similar_movies):
-    pass
+    similartiy_matrix: numpy.ndarray = _get_similarity_martix()
+    movies: pd.DataFrame = pd.read_csv(movies_fixture_path)
+
+    actual_similar_movies: List = get_similar_movies(movie_title, similartiy_matrix, movies)
+
+    assert actual_similar_movies == expected_similar_movies
+
+
+def _get_similarity_martix():
+    return array([[1, 0.6, 0.8, 0.7, 0.5],
+                  [0.6, 1, 0.5, 0.9, 0.4],
+                  [0.8, 0.5, 1, 0.3, 0.6],
+                  [0.7, 0.9, 0.3, 1, 0.2],
+                  [0.5, 0.4, 0.6, 0.2, 1]])
