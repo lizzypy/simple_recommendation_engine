@@ -4,7 +4,7 @@ from typing import List
 import numpy
 import pandas as pd
 import pytest
-from numpy import array
+from numpy import array, genfromtxt
 
 from analysis.utils.recommendation import get_similar_movies
 
@@ -20,4 +20,9 @@ movies_fixture_path: str = f"{os.path.dirname(os.path.abspath(__file__))}/fixtur
     ],
 )
 def test_get_recommendations(movie_title, expected_similar_movies):
-    pass
+    similartiy_matrix: numpy.ndarray = genfromtxt(similarity_matrix_fixture_path, delimiter=',')
+    movies: pd.DataFrame = pd.read_csv(movies_fixture_path)
+
+    actual_similar_movies: List = get_similar_movies(movie_title, similartiy_matrix, movies, 2)
+
+    assert actual_similar_movies == expected_similar_movies
