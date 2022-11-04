@@ -4,10 +4,9 @@ import pandas as pd
 
 
 def lower_case_and_strip_spaces(input: str) -> str:
-    pass
-
+    pass;
 
 def combine_genres_list(input: List[str]) -> Set:
-    pass
+    pass;
 
 
