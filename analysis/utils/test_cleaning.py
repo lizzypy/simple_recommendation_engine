@@ -15,9 +15,19 @@ from analysis.utils.cleaning import lower_case_and_strip_spaces, combine_genres_
     ],
 )
 def test_lower_case_and_strip_spaces(input, expected):
-    assert False
+    actual = lower_case_and_strip_spaces(input)
+    assert actual == expected
 
 
+@pytest.mark.parametrize(
+    "genre_string_list, combined",
+    [
+        (["crime|drama|horror", "crime|drama|action"], {"crime", "drama", "horror", "action"}),
+        (["crime|drama|horror", "fantasy"], {"crime", "drama", "horror", "fantasy"}),
+        (["horror", "fantasy", "crime"], {"horror", "fantasy", "crime"}),
+    ],
+)
 def test_combine_genres_list(genre_string_list, combined):
-    assert False
+    actual = combine_genres_list(genre_string_list)
+    assert actual == combined
     
