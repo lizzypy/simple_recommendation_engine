@@ -4,9 +4,6 @@ import os
 from analysis_complete.analysis.utils.cleaning import lower_case_and_strip_spaces, combine_genres_list
 
 
-BASE_PATH = os.path.dirname(os.path.abspath(__file__))
-DUPLICATE_MOVIE_FIXTURE_PATH = f"{BASE_PATH}/fixtures/duplicated_movie_fixture.csv"
-
 @pytest.mark.parametrize(
     "input, expected",
     [
