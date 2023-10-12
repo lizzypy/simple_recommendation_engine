@@ -26,3 +26,4 @@ def test_get_recommendations(movie_title, expected_similar_movies):
     actual_similar_movies: List = get_similar_movies(movie_title, similartiy_matrix, movies, 2)
 
     assert actual_similar_movies == expected_similar_movies
+

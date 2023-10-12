@@ -1,5 +1,3 @@
-from typing import List
-
 import pytest
 import os
 
@@ -15,9 +13,8 @@ from analysis.utils.cleaning import lower_case_and_strip_spaces, combine_genres_
     ],
 )
 def test_lower_case_and_strip_spaces(input, expected):
-    actual = lower_case_and_strip_spaces(input)
+    actual: str = lower_case_and_strip_spaces(input)
     assert actual == expected
-
 
 @pytest.mark.parametrize(
     "genre_string_list, combined",
@@ -30,4 +27,5 @@ def test_lower_case_and_strip_spaces(input, expected):
 def test_combine_genres_list(genre_string_list, combined):
     actual = combine_genres_list(genre_string_list)
     assert actual == combined
-    
+
+

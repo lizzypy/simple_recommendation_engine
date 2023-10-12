@@ -1,0 +1,5 @@
+services:
+  engine:
+    build: .
+    volumes:
+      - ./:/usr/src/app
