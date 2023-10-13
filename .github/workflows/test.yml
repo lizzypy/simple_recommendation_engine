@@ -1,0 +1,14 @@
+name: Pytest
+on: [workflow_call,push, pull_request, workflow_dispatch]
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.11.16
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: pytest
