@@ -1,7 +1,5 @@
 name: Upload Prepare Script
-on:
-  push:
-    branches: [ main ]
+on: [workflow_call, push, pull_request, workflow_dispatch]
 
 env:
   AWS_DEFAULT_REGION: us-east-1
