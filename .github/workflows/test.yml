@@ -15,4 +15,5 @@ jobs:
           python-version: 3.9.0
           cache: pip
       - run: pip install -r requirements.txt
+      - run: pip install analysis/utils/dist/pydata_engine_utils-0.1.0-py3-none-any.whl
       - run: pytest
