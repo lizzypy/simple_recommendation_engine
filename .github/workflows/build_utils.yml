@@ -1,8 +1,7 @@
-name: Build Utils
-on: [workflow_call,push, pull_request, workflow_dispatch]
+on: [ workflow_call ]
 
 jobs:
-  pytest:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

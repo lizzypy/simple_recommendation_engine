@@ -1,5 +1,4 @@
-name: Pytest
-on: [workflow_call,push, pull_request, workflow_dispatch]
+on: [ workflow_call,push, pull_request, workflow_dispatch ]
 
 jobs:
   build:
