@@ -1,7 +1,17 @@
+from typing import List, Set
 import pandas as pd
-from typing import List
-from analysis.utils.cleaning import lower_case_and_strip_spaces
-from analysis.utils.cleaning import combine_genres_list
+
+def lower_case_and_strip_spaces(input: str) -> str:
+    return input.lower().strip()
+
+
+def combine_genres_list(input: List[str]) -> Set:
+    all_genres: Set = set()
+    for genre_strings in input:
+        genres: List[str] = genre_strings.split('|')
+        for genre in genres:
+            all_genres.add(genre)
+    return all_genres
 
 def prepare_genres(movies: pd.DataFrame) -> pd.DataFrame:
     movies_cleaned_df = movies.copy()

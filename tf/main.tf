@@ -5,39 +5,22 @@ terraform {
       version = "~> 5.0"
     }
   }
+
+  backend "s3" {
+    encrypt        = true
+    bucket         = "recommendation-engine-terraform-state"
+    key            = "recommendation-engine-tf"
+    dynamodb_table = "recommendation-engine-lock"
+    region         = "us-east-1"
+  }
 }
 
 provider "aws" {
   region = "us-east-1"
 }
 
-resource "aws_s3_bucket" "pydata_pipeline_bucket" {
-  bucket = "pydatapipelinebucket"
-  acl    = "private"
-}
-
-resource "aws_s3_object" "movie_input_data" {
-  bucket = aws_s3_bucket.pydata_pipeline_bucket.id
-  key = "all_movies.csv"
-  source = "../analysis/input/all_movies.csv"
-  acl    = "private"
-}
-
-resource "aws_s3_object" "prepare_script" {
-  bucket = aws_s3_bucket.pydata_pipeline_bucket.id
-  key = "prepare.py"
-  source = "../prepare.py"
-  acl    = "private"
-}
-
-resource "aws_s3_object" "tempdir" {
-  bucket = aws_s3_bucket.pydata_pipeline_bucket.id
-  key    = "temporary/"
-  acl    = "private"
-}
-
 module "aws_glue_job" {
-  source = "./aws-glue"
+  source = "./modules/aws-glue"
 
   s3_bucket_uri = "s3://${aws_s3_bucket.pydata_pipeline_bucket.bucket}"
 }
