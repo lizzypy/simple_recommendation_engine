@@ -1,5 +1,5 @@
 name: Upload Prepare Script
-on: [ push, pull_request ]
+on: [ pull_request ]
 
 env:
   AWS_DEFAULT_REGION: us-east-1
