@@ -11,8 +11,7 @@ from pydata_engine_utils.cleaning import lower_case_and_strip_spaces, combine_ge
     ],
 )
 def test_lower_case_and_strip_spaces(input, expected):
-    actual: str = lower_case_and_strip_spaces(input)
-    assert actual == expected
+    assert False
 
 @pytest.mark.parametrize(
     "genre_string_list, combined",
