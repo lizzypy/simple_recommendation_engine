@@ -10,7 +10,7 @@ jobs:
   tests:
     uses: ./.github/workflows/test.yml
   publish:
-    name: deploy
+    name: upload
     needs: [ tests ]
     runs-on: ubuntu-latest
     steps:
@@ -29,7 +29,3 @@ jobs:
       - name: Upload to S3
         run: |
           ./upload_prepare.sh
-
-
-
-
