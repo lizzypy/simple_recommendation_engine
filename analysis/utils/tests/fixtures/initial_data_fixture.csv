@@ -1,3 +1,8 @@
-,movieId,title,genres
-582,588,Aladdin (1992), Adventure|animation|CHILDREN|comedy|Musical 
-24657,114240,Aladdin (1992), Adventure|animation|CHILDREN|comedy|Fantasy 
+id,movieId,title,genres
+1,588,Aladdin (1992), Adventure|animation|CHILDREN|comedy|Musical
+2,589,Toy Story (1995), (no genres listed)
+3,599,A Really Good Movie (2010),(no genres listed)
+4,560,An Even Better Movie (2010),comedy
+5,561,An Even Better Movie (2010),action
+6,562,An Even Better Movie (2010),adventure
+7,114240,Aladdin (1992), Adventure|animation|CHILDREN|comedy|Fantasy

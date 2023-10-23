@@ -1,6 +1,4 @@
 import os
-from typing import List
-
 import pandas as pd
 from pydata_engine_utils import cleaning
 
@@ -14,7 +12,12 @@ def test_prepare_genres():
 
     actual_prepared_data: pd.DataFrame = cleaning.prepare_genres(initial_data)
 
-    actual_genres = actual_prepared_data.iloc[0]["genres"]
-    expected_genres = expected_data.iloc[0]["genres"]
+    actual_num_of_rows = actual_prepared_data.shape[0]
+    expected_num_of_rows = expected_data.shape[0]
 
-    assert set(actual_genres.split(" ")) == set(expected_genres.split(" "))
+    assert actual_num_of_rows == expected_num_of_rows
+
+    for i in range(actual_num_of_rows):
+        actual_genres = actual_prepared_data.iloc[i]["genres"]
+        expected_genres = expected_data.iloc[i]["genres"]
+        assert set(actual_genres.split(" ")) == set(expected_genres.split(" "))
