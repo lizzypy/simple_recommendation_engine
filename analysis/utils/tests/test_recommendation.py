@@ -6,7 +6,7 @@ import pandas as pd
 import pytest
 from numpy import array, genfromtxt
 
-from pydata_engine_utils import recommendation
+from ..pydata_engine_utils import recommendation
 
 similarity_matrix_fixture_path: str = f"{os.path.dirname(os.path.abspath(__file__))}/fixtures/similarity_matrix_fixture.csv"
 movies_fixture_path: str = f"{os.path.dirname(os.path.abspath(__file__))}/fixtures/movies_fixture.csv"

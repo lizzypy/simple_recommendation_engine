@@ -1,7 +1,6 @@
 import pytest
-import os
 
-from pydata_engine_utils.cleaning import lower_case_and_strip_spaces, combine_genres_list
+from ..pydata_engine_utils.cleaning import lower_case_and_strip_spaces, combine_genres_list
 @pytest.mark.parametrize(
     "input, expected",
     [

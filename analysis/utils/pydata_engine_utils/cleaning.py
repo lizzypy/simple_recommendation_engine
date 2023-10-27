@@ -6,12 +6,13 @@ def lower_case_and_strip_spaces(input: str) -> str:
 
 
 def combine_genres_list(input: List[str]) -> Set:
-    all_genres: Set = set()
-    for genre_strings in input:
-        genres: List[str] = genre_strings.split('|')
+    all_genres = set()
+    for genre_string in input:
+        genres = genre_string.split('|')
         for genre in genres:
             all_genres.add(genre)
     return all_genres
+
 
 def prepare_genres(movies: pd.DataFrame) -> pd.DataFrame:
     movies_cleaned_df = movies.copy()
