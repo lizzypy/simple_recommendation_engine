@@ -7,15 +7,13 @@ from pydata_engine_utils import cleaning,extract
 def prepare():
     s3 = boto3.client('s3')
 
-    s3.download_file('pydatapipelinebucket', 'all_movies.csv', 'local_file.csv')
+    s3.download_file('pydatapipelinebucket_final', 'all_movies.csv', 'local_file.csv')
     movies_df: pd.DataFrame = pd.read_csv('local_file.csv')
 
     movies_df = cleaning.prepare_genres(movies_df)
 
     # get the list of all genres
     all_genres = extract.get_genres_list(movies_df)
-
-    movies_df = movies_df.head(30000)
 
     # Get the tf-idf matrix
     tfidf_matrix = TfidfVectorizer(vocabulary=all_genres).fit_transform(movies_df['genres'])

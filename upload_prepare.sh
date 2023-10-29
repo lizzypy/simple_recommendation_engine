@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define your bucket and file name
-BUCKET_NAME="pydatapipelinebucket"
+BUCKET_NAME="pydatapipelinebucket_final"
 FILE_NAME="analysis/prepare.py"
 
 # Upload the file
