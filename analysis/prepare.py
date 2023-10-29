@@ -2,7 +2,8 @@ import boto3
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-from pydata_engine_utils import cleaning,extract
+from pydata_engine_utils import cleaning, extract
+
 
 def prepare():
     s3 = boto3.client('s3')
@@ -22,10 +23,10 @@ def prepare():
     cosine_df = pd.DataFrame(cosine_similarity(tfidf_matrix, tfidf_matrix))
     cosine_df.to_csv('the_matrix.csv')
 
-    s3.upload_file('the_matrix.csv', 'pydatapipelinebucket', 'the_s3_matrix.csv')
+    s3.upload_file('the_matrix.csv', 'pydatapipelinebucket-final', 'the_s3_matrix.csv')
 
     print("Finished!")
 
+
 if __name__ == "__main__":
     prepare()
-
