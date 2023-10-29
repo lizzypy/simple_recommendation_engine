@@ -36,8 +36,8 @@ resource "aws_iam_role" "glue_role" {
   }
 }
 
-resource "aws_glue_job" "preparematrix" {
-  name         = "preparematrix-job"
+resource "aws_glue_job" "preparematrix-final" {
+  name         = "preparematrix-final"
   description  = "Prepare Matrix AWS Glue Job"
   role_arn     = aws_iam_role.glue_role.arn
   max_capacity = "1.0"

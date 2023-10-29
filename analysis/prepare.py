@@ -7,7 +7,7 @@ from pydata_engine_utils import cleaning,extract
 def prepare():
     s3 = boto3.client('s3')
 
-    s3.download_file('pydatapipelinebucket_final', 'all_movies.csv', 'local_file.csv')
+    s3.download_file('pydatapipelinebucket-final', 'all_movies.csv', 'local_file.csv')
     movies_df: pd.DataFrame = pd.read_csv('local_file.csv')
 
     movies_df = cleaning.prepare_genres(movies_df)

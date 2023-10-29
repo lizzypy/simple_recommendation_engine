@@ -1,4 +1,4 @@
 variable "pipelinebucket" {
   type    = string
-  default = "pydatapipelinebucket"
+  default = "pydatapipelinebucket-final"
 }

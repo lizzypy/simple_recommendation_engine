@@ -22,5 +22,5 @@ provider "aws" {
 module "aws_glue_job" {
   source = "./modules/aws-glue"
 
-  s3_bucket_uri = "s3://${aws_s3_bucket.pydata_pipeline_bucket.bucket}"
+  s3_bucket_uri = "s3://${aws_s3_bucket.pydata_pipeline_bucket_final.bucket}"
 }
