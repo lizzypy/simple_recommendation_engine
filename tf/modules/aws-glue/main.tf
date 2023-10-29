@@ -49,12 +49,12 @@ resource "aws_glue_job" "preparematrix-final" {
     name    = "pythonshell"
     script_location = "${var.s3_bucket_uri}/prepare.py"
     python_version = "3.9"
-    python_libs_path = "${var.s3_bucket_uri}/pydata_engine_utils-0.1.0-py3-none-any.whl"
   }
 
   default_arguments = {
     "--job-language" = "python"
     "--TempDir" = "${var.s3_bucket_uri}/temporary"
+    "--extra-py-files" = "${var.s3_bucket_uri}/pydata_engine_utils-0.1.0-py3-none-any.whl"
     "library-set" = "analytics"
   }
 
