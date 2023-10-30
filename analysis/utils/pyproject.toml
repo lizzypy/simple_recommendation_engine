@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "pydata-engine-utils"
+version = "0.1.0"
+description = "Utility functions to clean the movie input data"
+authors = ["liz johnson <lizdrennan8@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+pandas = "1.5.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

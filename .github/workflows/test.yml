@@ -1,0 +1,18 @@
+name: Pytest
+on: [ workflow_call ]
+
+jobs:
+  build:
+    uses: ./.github/workflows/build_utils.yml
+  pytest:
+    name: test
+    needs: [ build ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.8.15
+      - run: pip install -r analysis/requirements.txt
+      - run: pip install analysis/utils/dist/pydata_engine_utils-0.1.0-py3-none-any.whl
+      - run: pytest
