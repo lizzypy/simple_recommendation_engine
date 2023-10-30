@@ -37,3 +37,18 @@ To run a single test from root:
 
 
 ### Terraform
+
+To build the resources needed to run the glue job in aws you should move into the tf directory then run:
+
+1. `terraform init`
+2. `terraform plan`
+3. `terraform apply`
+
+#### Notes:
+
+- The terraform holds its state remotely. You should create an aws bucket in your aws account named `recommendation-engine-terraform-state`
+- You should create a dynamo-db table named `recommendation-engine-lock`
+  - That table MUST have an id of LockID
+- You will need to change the name of your S3 bucket. S3 bucket names must be globally unique
+- You need to manually add the `all_movies.csv` from analysis/notebooks/input/all_movies.csv to your S3 bucket once it's created
+- You will need to run the ./upload_prepare.sh script manually if you don't let github run the step for you before using the script in AWS
